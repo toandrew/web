@@ -1,22 +1,21 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
 	devtool: 'eval-source-map',
-	entry: ['webpack/hot/dev-server', __dirname + '/app/index.js'],
+	entry: [__dirname + '/app/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'bundle.js'
+		filename: '[name].bundle.js'
 	},
 
 	plugins: [
+		new CleanWebpackPlugin(['build']),
 		new HtmlWebpackPlugin({
 			template: './public/index.html',
 			filename: 'index.html'
 		}),
-
-		new webpack.HotModuleReplacementPlugin()
 	],
 
 	module: {
@@ -35,13 +34,4 @@ module.exports = {
 			}
 		]
 	},
-
-	devServer: {
-		contentBase: './build',
-		historyApiFallback: true,
-		inline: true,
-		host: '0.0.0.0',
-		port: 8080
-	}
-
 }
