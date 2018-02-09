@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-	devtool: 'eval-source-map',
 	entry: [__dirname + '/app/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'build'),
